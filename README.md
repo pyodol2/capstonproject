@@ -32,7 +32,7 @@
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/089914e6-e887-4f89-86a4-b967351962ff)
 
 
-#기능 확인 
+# 기능 확인 
 
 
 1. 접수자가 접수한다.
