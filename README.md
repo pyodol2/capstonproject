@@ -7,11 +7,10 @@
 2. 접수가 완료되면 의사에게 환자 정보가 등록된다 
 3. 등록된 정보로 의사가 검사를 처방한다
 4. 검사 정보가 생성된다 
-5. 검사자가 검사를 시행한다 
-6. 환자가 검사 거부시 검사를 취소한다
-7. 의사가 진료완료한다.
-8. 환자가 진료 거부시 진료를 취소한다
-9. 접수자가 진료 완료,취소를 확인한다
+5. 검사자가 검사를 시행 및 취소한다 
+6. 의사가 확인한다.
+7. 의사가 진료 종료/ 거부를 한다 
+8. 접수자가 진료 완료,취소를 확인한다
 
 비기능적 요구사항
 1. 장애격리
@@ -56,12 +55,20 @@ gateway를 통해 접수한다
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/a0dd9fef-61ac-469e-b16a-00e6891d16dd)
 
    
-6. 검사자가 검사를 시행한다 
+5. 검사자가 검사를 시행 및 취소한다 
 
-7. 환자가 검사 거부시 검사를 취소한다
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/5d19c90c-f51b-41fe-bda5-03a9b41c1d50)
 
-8. 의사가 진료완료한다.
 
-9. 환자가 진료 거부시 진료를 취소한다
+6. 의사가 확인한다.
 
-10. 접수자가 진료 완료,취소를 확인한다
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/660d925e-f28e-46b0-a426-976a9f2df0c3)
+
+7. 의사가 진료 종료 및 거부를 한다
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/7c3523ca-e285-4059-830e-9275b594c52b)
+
+
+9. 접수자가 진료 완료,취소를 확인한다
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/9f65d345-5546-4fee-bf70-83d7cc56f8b7)
+
