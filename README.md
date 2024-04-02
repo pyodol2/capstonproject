@@ -56,28 +56,7 @@
    
 5. 검사자가 검사를 시행 및 취소한다 
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/5d19c90c-f51b-41fe-bda5-03a9b41c1d50)
-
-
-6. 의사가 확인한다.
-
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/660d925e-f28e-46b0-a426-976a9f2df0c3)
-
-7. 의사가 진료 종료 및 거부를 한다
-
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/7c3523ca-e285-4059-830e-9275b594c52b)
-
-
-9. 접수자가 진료 완료,취소를 확인한다
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/9f65d345-5546-4fee-bf70-83d7cc56f8b7)
-
-# 클라우드 네이티브 개발 
-
-### Saga 
-각 도메인에서 생성된 이벤트는a Topic 으로 들어간 후 메세지를 구독하여 이벤트로 처리하는 방식으로 진행.
-Choreography 방식
-
-Choreography는  Kafk 게시-구독 원칙을 적용하여 각 마이크로 서비스는 자체 로컬 트랜잭션을 실행하고 이벤트를 메시지 브로커 시스템 에 게시하고 다른 마이크로 서비스에서 로컬 트랜잭션 을 트리거 합니다.
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/5d19c90c-f51b-41fe-bda5-리
 
 ### Compesnation
 검사거부, 완료   진료 거부 ,완료시 자동으로 Status 변경 
