@@ -28,10 +28,7 @@ public class Examination {
     private String status;
 
     @PostPersist
-    public void onPostPersist() {}
-
-    @PostUpdate
-    public void onPostUpdate() {
+    public void onPostPersist() {
         ExaminationCompleted examinationCompleted = new ExaminationCompleted(
             this
         );
