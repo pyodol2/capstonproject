@@ -44,8 +44,6 @@ gateway를 통해 접수한다
 접수된 데이터 
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/79b1c971-b933-4881-b3a5-cfb54ffde040)
 
-
-
 2. 접수가 완료되면 의사에게 환자 정보가 등록된다
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/a135a719-4dd3-4f40-a613-898eed1712b8)
 
@@ -54,6 +52,7 @@ gateway를 통해 접수한다
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/c4ee1add-eb62-49e3-9579-e350f738f8c3)
 
 4. 검사 정보가 생성된다
+   
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/a0dd9fef-61ac-469e-b16a-00e6891d16dd)
 
    
