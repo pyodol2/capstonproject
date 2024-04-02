@@ -24,6 +24,7 @@
 클라우드 아키텍쳐 설계 
 
 # 클라우드 아키텍쳐 설계
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/7d7ae24d-7515-4c9c-ab9a-d0ede1035422)
 
 
 클라우드 네이티브 모델링
