@@ -72,3 +72,25 @@ gateway를 통해 접수한다
 9. 접수자가 진료 완료,취소를 확인한다
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/9f65d345-5546-4fee-bf70-83d7cc56f8b7)
 
+# 클라우드 네이티브 개발 
+
+### Saga 
+각 도메인에서 생성된 이벤트는 Kafka Topic 으로 들어간 후 메세지를 구독하여 이벤트로 처리하는 방식으로 진행.
+
+### Compesnation
+검사거부, 완료   진료 거부 ,완료시 자동으로 Status 변경 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/89e0a4c4-2c95-4f51-8c1b-a0c16288c7af)
+
+###  GateWay 
+모든 API는 게이트웨이를 통한 단일 진입점으로 서비스에 접근된다 
+```
+http http://localhost:8088/receptions/1 
+http http://localhost:8088/diagnoses/1
+http http://localhost:8088/examinations/1
+```
+
+### CQRS
+다른 도메인의 서비스의 데이터 원본에 접근없이 내 서비스에서의 데이터 조회가 가능하다.
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/1f2e983f-4145-4490-a3fb-3e9334d7d059)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/03c98565-e82d-45b5-9a42-aae3ac5d6af8)
+
