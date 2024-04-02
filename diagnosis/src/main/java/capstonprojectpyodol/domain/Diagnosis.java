@@ -50,53 +50,31 @@ public class Diagnosis {
     }
 
     //<<< Clean Arch / Port Method
-    public static void patientInfoTransfer(
-        TreatmentReceived treatmentReceived
-    ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
+    public static void patientInfoTransfer( TreatmentReceived treatmentReceived ) {
+        
+      
+        // 데이터 생성 
         Diagnosis diagnosis = new Diagnosis();
+        diagnosis.setPatientId(treatmentReceived.getPatientId());
+        diagnosis.setReceptionDt(treatmentReceived.getReceptionDt());
         repository().save(diagnosis);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(treatmentReceived.get???()).ifPresent(diagnosis->{
-            
-            diagnosis // do something
-            repository().save(diagnosis);
-
-
-         });
-        */
 
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public static void updatePrescribeStatus(
-        ExaminationCanceled examinationCanceled
-    ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Diagnosis diagnosis = new Diagnosis();
-        repository().save(diagnosis);
-
-        */
-
-        /** Example 2:  finding and process
+    public static void updatePrescribeStatus( ExaminationCanceled examinationCanceled) {
         
-        repository().findById(examinationCanceled.get???()).ifPresent(diagnosis->{
+         repository().findById(examinationCanceled.getExamId()).ifPresent(diagnosis->{
             
-            diagnosis // do something
-            repository().save(diagnosis);
+            if(diagnosis != null){
 
-
-         });
-        */
+                diagnosis.setDiagnosisStatus(examinationCanceled.getStatus());
+                repository().save(diagnosis);
+            }
+       });
+      
 
     }
 
@@ -105,24 +83,16 @@ public class Diagnosis {
     public static void updatePrescribeStatus(
         ExaminationCompleted examinationCompleted
     ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Diagnosis diagnosis = new Diagnosis();
-        repository().save(diagnosis);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(examinationCompleted.get???()).ifPresent(diagnosis->{
+              
+        repository().findById(examinationCompleted.getExamId()).ifPresent(diagnosis->{
             
-            diagnosis // do something
-            repository().save(diagnosis);
+            if(diagnosis != null){
 
-
-         });
-        */
+                diagnosis.setDiagnosisStatus(examinationCompleted.getStatus());
+                repository().save(diagnosis);
+            }
+       });
+      
 
     }
     //>>> Clean Arch / Port Method
