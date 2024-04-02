@@ -56,11 +56,31 @@
    
 5. 검사자가 검사를 시행 및 취소한다 
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/5d19c90c-f51b-41fe-bda5-리
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/d4ac20ec-8725-4cb2-95ee-ac9c030b5275)
 
+
+
+6. 의사가 확인한다.
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/9b2199df-05a4-4e93-9ef6-bdee635b9f51)
+
+   
+7. 의사가 진료 종료/ 거부를 한다
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/e0766764-cb01-4e5b-897a-2bc625a29952)
+
+8. 접수자가 진료 완료,취소를 확인한다
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/2bcf9da3-4c24-4ddd-ac2b-ebec7e8e724a)
+
+
+### SAGA 
+Choreography 방식
+Kafka를 통해 게시-구독 원칙을 적용하여 각 마이크로 서비스는 자체 로컬 트랜잭션을 실행하고 이벤트를 메시지 브로커 시스템 에 게시하고 다른 마이크로 서비스에서 로컬 트랜잭션 을 트리거
 ### Compesnation
 검사거부, 완료   진료 거부 ,완료시 자동으로 Status 변경 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/89e0a4c4-2c95-4f51-8c1b-a0c16288c7af)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/96606cbc-3b5c-4f31-84ba-922676201b35)
+
 
 ###  GateWay 
 모든 API는 게이트웨이를 통한 단일 진입점으로 서비스에 접근된다 
