@@ -31,11 +31,12 @@ public class Reception {
 
     @PostPersist
     public void onPostPersist() {
+
+
         TreatmentReceived treatmentReceived = new TreatmentReceived(this);
         treatmentReceived.publishAfterCommit();
 
-        TreatmentCanceled treatmentCanceled = new TreatmentCanceled(this);
-        treatmentCanceled.publishAfterCommit();
+  
     }
 
     public static ReceptionRepository repository() {
@@ -49,24 +50,18 @@ public class Reception {
     public static void updateReceptionStatus(
         DiagnosisRejected diagnosisRejected
     ) {
-        //implement business logic here:
 
-        /** Example 1:  new item 
-        Reception reception = new Reception();
-        repository().save(reception);
-
-        */
-
-        /** Example 2:  finding and process
         
-        repository().findById(diagnosisRejected.get???()).ifPresent(reception->{
+        repository().findById(diagnosisRejected.getPatientId()).ifPresent(reception->{
             
-            reception // do something
-            repository().save(reception);
+            if(reception != null){
 
+                reception.setStatus("진료거부");
+                repository().save(reception);
+            }
 
          });
-        */
+    
 
     }
 
@@ -75,24 +70,15 @@ public class Reception {
     public static void updateReceptionStatus(
         DiagnosisCompleted diagnosisCompleted
     ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Reception reception = new Reception();
-        repository().save(reception);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(diagnosisCompleted.get???()).ifPresent(reception->{
+        repository().findById(diagnosisCompleted.getPatientId()).ifPresent(reception->{
             
-            reception // do something
-            repository().save(reception);
+            if(reception != null){
 
+                reception.setStatus("진료완료");
+                repository().save(reception);
+            }
 
          });
-        */
 
     }
     //>>> Clean Arch / Port Method

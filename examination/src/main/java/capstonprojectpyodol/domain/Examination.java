@@ -32,13 +32,17 @@ public class Examination {
 
     @PostUpdate
     public void onPostUpdate() {
-        ExaminationCompleted examinationCompleted = new ExaminationCompleted(
-            this
-        );
-        examinationCompleted.publishAfterCommit();
 
-        ExaminationCanceled examinationCanceled = new ExaminationCanceled(this);
-        examinationCanceled.publishAfterCommit();
+        if(this.getStatus().equals("검사완료")){
+
+            ExaminationCompleted examinationCompleted = new ExaminationCompleted(this);
+            examinationCompleted.publishAfterCommit();
+
+        }else if(this.getStatus().equals("검사거부")){
+
+            ExaminationCanceled examinationCanceled = new ExaminationCanceled(this);
+          examinationCanceled.publishAfterCommit();
+        }
     }
 
     public static ExaminationRepository repository() {
@@ -50,25 +54,15 @@ public class Examination {
 
     //<<< Clean Arch / Port Method
     public static void prescriptionInfoTransfer(Prescribed prescribed) {
-        //implement business logic here:
 
-        /** Example 1:  new item 
-        Examination examination = new Examination();
-        repository().save(examination);
+        Examination exam = new Examination();
 
-        */
-
-        /** Example 2:  finding and process
+        exam.setPatientId(prescribed.getPatientId());
+        exam.setExamId(prescribed.getId());
         
-        repository().findById(prescribed.get???()).ifPresent(examination->{
+        repository().save(exam);
             
-            examination // do something
-            repository().save(examination);
-
-
-         });
-        */
-
+            
     }
     //>>> Clean Arch / Port Method
 

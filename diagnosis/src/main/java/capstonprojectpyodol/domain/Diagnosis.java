@@ -32,14 +32,22 @@ public class Diagnosis {
 
     @PostPersist
     public void onPostPersist() {
-        Prescribed prescribed = new Prescribed(this);
-        prescribed.publishAfterCommit();
 
-        DiagnosisCompleted diagnosisCompleted = new DiagnosisCompleted(this);
-        diagnosisCompleted.publishAfterCommit();
+        if(this.getDiagnosisStatus().equals("처방")){
+ 
+           Prescribed prescribed = new Prescribed(this);
+           prescribed.publishAfterCommit();
 
-        DiagnosisRejected diagnosisRejected = new DiagnosisRejected(this);
-        diagnosisRejected.publishAfterCommit();
+        }else if(this.getDiagnosisStatus().equals("진료거부")){ 
+
+            DiagnosisRejected diagnosisRejected = new DiagnosisRejected(this);
+            diagnosisRejected.publishAfterCommit();
+
+        }else if(this.getDiagnosisStatus().equals("진료완료")){ 
+        
+            DiagnosisCompleted diagnosisCompleted = new DiagnosisCompleted(this);
+            diagnosisCompleted.publishAfterCommit();
+        }
     }
 
     public static DiagnosisRepository repository() {
@@ -55,7 +63,7 @@ public class Diagnosis {
       
         // 데이터 생성 
         Diagnosis diagnosis = new Diagnosis();
-        diagnosis.setPatientId(treatmentReceived.getPatientId());
+        diagnosis.setPatientId(treatmentReceived.getId());
         diagnosis.setReceptionDt(treatmentReceived.getReceptionDt());
         repository().save(diagnosis);
 
