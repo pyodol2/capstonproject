@@ -29,3 +29,4 @@
 클라우드 네이티브 모델링
 
 # 클라우드 네이티브 모델링
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/d72a9b4c-012b-4921-b275-91c9cbc0cc60)
