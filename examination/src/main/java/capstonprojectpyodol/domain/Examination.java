@@ -30,26 +30,26 @@ public class Examination {
     @PostPersist
     public void onPostPersist() {}
 
-    @PostUpdate
+   @PostUpdate
     public void onPostUpdate() {
 
-        if(this.getStatus().equals("검사완료")){
 
-            ExaminationCompleted examinationCompleted = new ExaminationCompleted(this);
-            examinationCompleted.publishAfterCommit();
+        
+        this.setStatus(repository().findById(this.getId()).get().getStatus());
 
-        }else if(this.getStatus().equals("검사거부")){
+        if(this.getStatus() != null){
 
-            ExaminationCanceled examinationCanceled = new ExaminationCanceled(this);
-          examinationCanceled.publishAfterCommit();
+            if(this.getStatus().equals("검사완료")){
+
+                ExaminationCompleted examinationCompleted = new ExaminationCompleted(this);
+                examinationCompleted.publishAfterCommit();
+
+            }else if(this.getStatus().equals("검사거부")){
+
+                ExaminationCanceled examinationCanceled = new ExaminationCanceled(this);
+            examinationCanceled.publishAfterCommit();
+            }
         }
-    }
-
-    public static ExaminationRepository repository() {
-        ExaminationRepository examinationRepository = ExaminationApplication.applicationContext.getBean(
-            ExaminationRepository.class
-        );
-        return examinationRepository;
     }
 
     //<<< Clean Arch / Port Method
