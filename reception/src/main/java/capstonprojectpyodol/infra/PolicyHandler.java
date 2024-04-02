@@ -27,34 +27,32 @@ public class PolicyHandler {
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='DiagnosisCompleted'"
     )
-    public void wheneverDiagnosisCompleted_CompleteDiagnosis(
+    public void wheneverDiagnosisCompleted_UpdateStatus(
         @Payload DiagnosisCompleted diagnosisCompleted
     ) {
         DiagnosisCompleted event = diagnosisCompleted;
         System.out.println(
-            "\n\n##### listener CompleteDiagnosis : " +
-            diagnosisCompleted +
-            "\n\n"
+            "\n\n##### listener UpdateStatus : " + diagnosisCompleted + "\n\n"
         );
 
         // Sample Logic //
-        Reception.completeDiagnosis(event);
+        Reception.updateStatus(event);
     }
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
         condition = "headers['type']=='DiagnosisRejected'"
     )
-    public void wheneverDiagnosisRejected_CancelDiagnosis(
+    public void wheneverDiagnosisRejected_UpdateStatus(
         @Payload DiagnosisRejected diagnosisRejected
     ) {
         DiagnosisRejected event = diagnosisRejected;
         System.out.println(
-            "\n\n##### listener CancelDiagnosis : " + diagnosisRejected + "\n\n"
+            "\n\n##### listener UpdateStatus : " + diagnosisRejected + "\n\n"
         );
 
         // Sample Logic //
-        Reception.cancelDiagnosis(event);
+        Reception.updateStatus(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

@@ -46,9 +46,7 @@ public class Reception {
     }
 
     //<<< Clean Arch / Port Method
-    public static void completeDiagnosis(
-        DiagnosisCompleted diagnosisCompleted
-    ) {
+    public static void updateStatus(DiagnosisCompleted diagnosisCompleted) {
         //implement business logic here:
 
         /** Example 1:  new item 
@@ -72,7 +70,7 @@ public class Reception {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public static void cancelDiagnosis(DiagnosisRejected diagnosisRejected) {
+    public static void updateStatus(DiagnosisRejected diagnosisRejected) {
         //implement business logic here:
 
         /** Example 1:  new item 
