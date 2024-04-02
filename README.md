@@ -37,7 +37,6 @@
 
 1. 접수자가 접수한다.
 
-gateway를 통해 접수한다 
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/0089658a-cad0-4718-b23e-96583866b3b0)
 
 접수된 데이터 
