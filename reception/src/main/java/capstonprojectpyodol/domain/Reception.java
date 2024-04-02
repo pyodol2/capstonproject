@@ -46,33 +46,7 @@ public class Reception {
     }
 
     //<<< Clean Arch / Port Method
-    public static void updateReceptionStatus(
-        DiagnosisRejected diagnosisRejected
-    ) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Reception reception = new Reception();
-        repository().save(reception);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(diagnosisRejected.get???()).ifPresent(reception->{
-            
-            reception // do something
-            repository().save(reception);
-
-
-         });
-        */
-
-    }
-
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public static void updateReceptionStatus(
+    public static void completeDiagnosis(
         DiagnosisCompleted diagnosisCompleted
     ) {
         //implement business logic here:
@@ -86,6 +60,30 @@ public class Reception {
         /** Example 2:  finding and process
         
         repository().findById(diagnosisCompleted.get???()).ifPresent(reception->{
+            
+            reception // do something
+            repository().save(reception);
+
+
+         });
+        */
+
+    }
+
+    //>>> Clean Arch / Port Method
+    //<<< Clean Arch / Port Method
+    public static void cancelDiagnosis(DiagnosisRejected diagnosisRejected) {
+        //implement business logic here:
+
+        /** Example 1:  new item 
+        Reception reception = new Reception();
+        repository().save(reception);
+
+        */
+
+        /** Example 2:  finding and process
+        
+        repository().findById(diagnosisRejected.get???()).ifPresent(reception->{
             
             reception // do something
             repository().save(reception);

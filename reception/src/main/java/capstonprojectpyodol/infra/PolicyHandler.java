@@ -25,38 +25,36 @@ public class PolicyHandler {
 
     @StreamListener(
         value = KafkaProcessor.INPUT,
-        condition = "headers['type']=='DiagnosisRejected'"
-    )
-    public void wheneverDiagnosisRejected_UpdateReceptionStatus(
-        @Payload DiagnosisRejected diagnosisRejected
-    ) {
-        DiagnosisRejected event = diagnosisRejected;
-        System.out.println(
-            "\n\n##### listener UpdateReceptionStatus : " +
-            diagnosisRejected +
-            "\n\n"
-        );
-
-        // Sample Logic //
-        Reception.updateReceptionStatus(event);
-    }
-
-    @StreamListener(
-        value = KafkaProcessor.INPUT,
         condition = "headers['type']=='DiagnosisCompleted'"
     )
-    public void wheneverDiagnosisCompleted_UpdateReceptionStatus(
+    public void wheneverDiagnosisCompleted_CompleteDiagnosis(
         @Payload DiagnosisCompleted diagnosisCompleted
     ) {
         DiagnosisCompleted event = diagnosisCompleted;
         System.out.println(
-            "\n\n##### listener UpdateReceptionStatus : " +
+            "\n\n##### listener CompleteDiagnosis : " +
             diagnosisCompleted +
             "\n\n"
         );
 
         // Sample Logic //
-        Reception.updateReceptionStatus(event);
+        Reception.completeDiagnosis(event);
+    }
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='DiagnosisRejected'"
+    )
+    public void wheneverDiagnosisRejected_CancelDiagnosis(
+        @Payload DiagnosisRejected diagnosisRejected
+    ) {
+        DiagnosisRejected event = diagnosisRejected;
+        System.out.println(
+            "\n\n##### listener CancelDiagnosis : " + diagnosisRejected + "\n\n"
+        );
+
+        // Sample Logic //
+        Reception.cancelDiagnosis(event);
     }
 }
 //>>> Clean Arch / Inbound Adaptor

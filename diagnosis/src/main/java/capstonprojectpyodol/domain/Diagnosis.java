@@ -76,7 +76,7 @@ public class Diagnosis {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public static void updatePrescribeStatus(
+    public static void cancelExamination(
         ExaminationCanceled examinationCanceled
     ) {
         //implement business logic here:
@@ -102,7 +102,7 @@ public class Diagnosis {
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
-    public static void updatePrescribeStatus(
+    public static void completeExamination(
         ExaminationCompleted examinationCompleted
     ) {
         //implement business logic here:
