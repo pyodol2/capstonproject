@@ -235,6 +235,21 @@ cache:
 
 
 ```
-kubectl autoscale deployment user13-ecr --cpu-percent=50 --min=1 --max=3
+# 오토 스케일링 설정명령어 호출
+kubectl autoscale deployment user13-ecr --cpu-percent=20 --min=1 --max=3
+
+
+# buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
+ containers:
+                  - name: $_PROJECT_NAME
+                    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
+                    ports:
+                      - containerPort: 8080
+                    resources:
+                      requests:
+                        cpu: "200m"    
 
 ```
+Siege를 통해 Auto Scale-Ou 증명한다 
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/a0ef3dd5-102c-40e1-9ec4-c8184d55c32a)
