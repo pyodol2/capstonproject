@@ -114,7 +114,7 @@ AWS Code builder 를 통해 CI/CD 진행
 
 ### CI/CD 완료   
 
-코드빌더의 WebHook의 buildspec-kubectl.yml 이용한 쿠버네티스  CI/CD 설정
+코드빌더의 WebHook의 buildspec-kubectl.yml  이용한 gateway   CI/CD 설정
 ```
 version: 0.2
 
