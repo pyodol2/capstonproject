@@ -385,3 +385,12 @@ siege 터미널을 열어서 충분한 시간만큼 부하를 주고 소스 수�
 ```
 siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.amazonaws.com:8080/1
 ```
+
+배포완료 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/4255e568-a384-4a3e-aa52-88fd684bd88e)
+
+
+1분동안 부하테스트 후 무정지 배포가 완료되었다.
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/1ed18a82-088c-418a-99b3-d95d535cc6a5)
+
+
