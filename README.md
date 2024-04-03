@@ -396,3 +396,13 @@ siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.ama
 
 ### 서비스 메쉬 응용 - Mesh 
 
+서비스 메시를 사용하기 위해 Sidecar Proxy 인 Istio를 설치한다.
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/44777b5e-fbb2-42fe-8da4-3d303b7d3b2f)
+
+서비스 매시의 구조와 호출구조를 이해할수 있도록 모니터링 도구를 다운받아 instio-gateway  , kiali  ,Jaeger LoadBalancing 으로 설정한다 
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/ecaee246-4e30-47f4-8cd1-276789677f54)
+
+
+
