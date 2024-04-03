@@ -253,3 +253,49 @@ kubectl autoscale deployment user13-ecr --cpu-percent=20 --min=1 --max=3
 Siege를 통해 Auto Scale-Ou 증명한다 
 
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/a0ef3dd5-102c-40e1-9ec4-c8184d55c32a)
+
+
+
+### 컨테이너로부터 환경분리 - CofigMap
+
+ConfigMap을 쿠버네티스에 배포한다 
+```
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-dev
+  namespace: default
+data:
+  ORDER_DB_URL: jdbc:mysql://mysql:3306/connectdb1?serverTimezone=Asia/Seoul&useSSL=false
+  ORDER_DB_USER: myuser
+  ORDER_DB_PASS: mypass
+  ORDER_LOG_LEVEL: DEBUG
+EOF
+```
+
+
+buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
+```
+                  env:
+                      - name: ORDER_LOG_LEVEL
+                        valueFrom:
+                          configMapKeyRef:
+                             name: config-dev
+                             key: ORDER_LOG_LEVEL    
+
+
+```
+
+명령어를 통해서 Pod의 환경변수를 확인한다 
+
+```
+kubectl exec pod/user13-ecr-75d9765455-449q5 -- env
+```
+DEBUG로 설정되어있다.
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/0f366971-7bd6-4a14-ba6f-1975a2f9976a)
+
+
+
+
