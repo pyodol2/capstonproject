@@ -274,6 +274,9 @@ data:
 EOF
 ```
 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/75550f90-a5e5-4aa5-89f8-ff1edb5b0563)
+
+
 
 buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
 ```
