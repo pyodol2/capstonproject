@@ -229,4 +229,12 @@ cache:
 
 
 
+# 컨테이너 인프라 설계 및 구성 역량
 
+### 컨테이너 자동확장 - HPA 
+
+
+```
+kubectl autoscale deployment user13-ecr --cpu-percent=50 --min=1 --max=3
+
+```
