@@ -405,4 +405,56 @@ siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.ama
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/ecaee246-4e30-47f4-8cd1-276789677f54)
 
 
+### 통합 모니터링 - Loggregation/Monitoring 
+통합 로깅을 위해 EFK를 설치한다 
+
+ElasticSearch 설치 후  namespace를 생성한다 
+```
+# 설치 
+helm repo add elastic https://helm.elastic.co
+helm repo update
+#namespace 생성 
+kubectl create namespace logging
+```
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/2002e9b1-978f-4275-8ae2-1158e8add2f2)
+id : elastic
+pw :YZYAR2v4an2H3fsx
+
+Fluentd(Fluentd(FluentBit)) 설치한다.
+```
+# 설치 
+git clone https://github.com/acmexii/fluent-bit-kubernetes-logging.git
+#데몬셋 계정권한설정
+kubectl create -f fluent-bit-service-account.yaml -n logging
+kubectl create -f fluent-bit-role.yaml -n logging
+kubectl create -f fluent-bit-role-binding.yaml -n logging
+
+#데몬셋을 배포한다 
+kubectl apply -f fluent-bit-configmap-modified.yaml -n logging
+kubectl apply -f fluent-bit-ds-modified.yaml -n logging
+```
+
+시각화 도구인 Kibana  를 설치한다 
+```
+helm install kibana elastic/kibana -f kibana-value.yml -n logging
+```
+
+ElasticSearch 동작을 확인한다 
+
+```
+#포트포워딩 
+kubectl port-forward -n logging elasticsearch-master-0 9200:9200
+# get 요청 
+curl -k https://localhost:9200 -u elastic:YZYAR2v4an2H3fsx
+```
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/f741c19b-de1b-41a5-823b-c0ffc174acc8)
+
+로깅을 UI 시각화로 보기 위해 Kibana Service Scope를 확장한다 
+```
+kubectl patch service/kibana-kibana -n logging -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+Kibana를 통해 로그인 후 로그을 확인한다 .
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/d116bcf1-b956-4a09-be82-76f37793c294)
 
