@@ -258,7 +258,7 @@ Siege를 통해 Auto Scale-Ou 증명한다
 
 ### 컨테이너로부터 환경분리 - CofigMap
 
-ConfigMap을 쿠버네티스에 배포한다 
+ConfigMap을  로그레벨 INFO로 쿠버네티스에 배포한다 
 ```
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -270,7 +270,7 @@ data:
   ORDER_DB_URL: jdbc:mysql://mysql:3306/connectdb1?serverTimezone=Asia/Seoul&useSSL=false
   ORDER_DB_USER: myuser
   ORDER_DB_PASS: mypass
-  ORDER_LOG_LEVEL: DEBUG
+  ORDER_LOG_LEVEL: INFO
 EOF
 ```
 
