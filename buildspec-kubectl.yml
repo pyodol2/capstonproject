@@ -104,7 +104,14 @@ phases:
                         valueFrom:
                           configMapKeyRef:
                              name: config-dev
-                             key: ORDER_LOG_LEVEL                       
+                             key: ORDER_LOG_LEVEL      
+                    volumeMounts:
+                      - mountPath: "/mnt/data"
+                        name: volume
+                volumes:
+                - name: volume
+                  persistentVolumeClaim:
+                    claimName: ebs-pvc  
           EOF
 
 cache:
