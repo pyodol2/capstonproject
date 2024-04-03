@@ -98,3 +98,26 @@ http http://localhost:8088/examinations/1
 
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/03c98565-e82d-45b5-9a42-aae3ac5d6af8)
 
+# 클라우드 배포 - Container 운영
+AWS Code builder 를 통해 CI/CD 진행 
+
+### 코드빌더 셋팅 
+
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/d7e3ba68-83af-45cc-bc22-3108e94bb1d0)
+
+
+### ECR 셋팅 
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/6a1cff04-dec8-4ba5-9e0a-63899185e456)
+
+
+### 배포완료 
+
+코드빌더의 WebHook을 이용한 CD 진행 
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/63433a99-b270-427d-80d2-9ec579461a94)
+
+
+
+
