@@ -304,6 +304,7 @@ Log Level이 INFO로 설정되어있다.
 
 
 해당 명령어로 실제 로그레벨을 확인한다.
+
 ```
 kubectl logs -l app=user13-ecr
 ```
@@ -313,6 +314,54 @@ kubectl logs -l app=user13-ecr
 
 
 
+### 클라우드스토리지 활용 - PVC  
 
+ebs-sc  Storage Class로 쿠버네티스에 PersistentVolumeClaim 배포한다.
+
+```
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-pvc
+  labels:
+    app: ebs-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
+  storageClassName: ebs-sc
+EOF
+```
+정상적으로 생성됨
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/8d989033-b2e3-43cb-9c59-7a54b9b37498)
+
+
+
+buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
+```
+                    volumeMounts:
+                      - mountPath: "/mnt/data"
+                        name: volume
+                    volumes:
+                      - name: volume
+                        persistentVolumeClaim:
+                          claimName: ebs-pvc
+```
+Pod가 올라옴
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/10057a7c-7747-410b-bc96-6ea403ab2bc3)
+
+Pod로 스토리지에 접속해서 text 파일을만든다 
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/0f129201-2b0b-4c08-9185-8a6a3c7def66)
+
+
+재배포로 새로운 Pod를 생성하고  test.txt 파일이 있는지 확인한다.
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/3999404f-4a00-4be4-8632-345d7cb9bba6)
 
 
