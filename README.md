@@ -364,4 +364,24 @@ Pod로 스토리지에 접속해서 text 파일을만든다
 
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/3999404f-4a00-4be4-8632-345d7cb9bba6)
 
+### 셀프 힐링/무정지배포 - Liveness/Rediness Probe 
 
+buildspec-kubectl.yml 해당 readinessProbe 설정을 추가하고 Push 해서 배포한다.
+```
+                  readinessProbe:
+                      httpGet:
+                        path: /actuator/health
+                        port: 8080
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      periodSeconds: 5
+                      failureThreshold: 10
+                          claimName: ebs-pvc
+```
+
+
+siege 터미널을 열어서 충분한 시간만큼 부하를 주고 소스 수정해 재배포한다. 
+
+```
+siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.amazonaws.com:8080/1
+```
