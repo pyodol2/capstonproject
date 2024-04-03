@@ -33,10 +33,6 @@ public class Examination {
    @PostUpdate
     public void onPostUpdate() {
 
-
-        
-        this.setStatus(repository().findById(this.getId()).get().getStatus());
-
         if(this.getStatus() != null){
 
             if(this.getStatus().equals("검사완료")){
@@ -52,6 +48,13 @@ public class Examination {
         }
     }
 
+
+    public static ExaminationRepository repository() {
+        ExaminationRepository diagnosisRepository = ExaminationApplication.applicationContext.getBean(
+            ExaminationRepository.class
+        );
+        return diagnosisRepository;
+    }
     //<<< Clean Arch / Port Method
     public static void prescriptionInfoTransfer(Prescribed prescribed) {
 
