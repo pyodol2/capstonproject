@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reception
+  labels:
+    app: reception
+    service: reception
+spec:
+  ports:
+  - port: 8080
+    name: http
+
+  selector:
+    app: reception
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reception-v1
+  labels:
+    app: reception
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reception
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: reception
+        version: v1
+    spec:
+      containers:
+      - name: reception
+        image: pyodol2/reception:latest
+        ports:
+        - containerPort: 8080
