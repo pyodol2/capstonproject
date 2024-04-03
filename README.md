@@ -292,9 +292,18 @@ buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
 ```
 kubectl exec pod/user13-ecr-75d9765455-449q5 -- env
 ```
-DEBUG로 설정되어있다.
+Log Level이 INFO로 설정되어있다.
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/0f366971-7bd6-4a14-ba6f-1975a2f9976a)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/2621eb07-2ae8-4b1c-8991-89b969e58d7b)
+
+
+해당 명령어로 실제 로그레벨을 확인한다.
+```
+kubectl logs -l app=user13-ecr
+```
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/1e9ec070-b952-48fd-ab1b-baaceb6f97b1)
+
+
 
 
 
