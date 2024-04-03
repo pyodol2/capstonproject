@@ -289,6 +289,9 @@ buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
 
 
 ```
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/7295ab2c-af3d-4544-87d5-c0b9f51151fa)
+
+
 
 명령어를 통해서 Pod의 환경변수를 확인한다 
 
@@ -297,13 +300,15 @@ kubectl exec pod/user13-ecr-75d9765455-449q5 -- env
 ```
 Log Level이 INFO로 설정되어있다.
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/2621eb07-2ae8-4b1c-8991-89b969e58d7b)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/6e8cf8ce-4bbf-46ce-8646-5408d0d71194)
 
 
 해당 명령어로 실제 로그레벨을 확인한다.
 ```
 kubectl logs -l app=user13-ecr
 ```
+
+
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/1e9ec070-b952-48fd-ab1b-baaceb6f97b1)
 
 
