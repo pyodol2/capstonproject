@@ -99,6 +99,12 @@ phases:
                       timeoutSeconds: 2
                       periodSeconds: 5
                       failureThreshold: 5
+                    env:
+                      - name: ORDER_LOG_LEVEL
+                        valueFrom:
+                          configMapKeyRef:
+                             name: config-dev
+                             key: ORDER_LOG_LEVEL                       
           EOF
 
 cache:
