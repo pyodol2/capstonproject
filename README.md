@@ -112,11 +112,120 @@ AWS Code builder 를 통해 CI/CD 진행
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/6a1cff04-dec8-4ba5-9e0a-63899185e456)
 
 
-### 배포완료 
+### CI/CD 완료   
 
-코드빌더의 WebHook을 이용한 CD 진행 
+코드빌더의 WebHook의 buildspec-kubectl.yml 이용한 쿠버네티스  CI/CD 설정
+```
+version: 0.2
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/63433a99-b270-427d-80d2-9ec579461a94)
+env:
+  variables:
+    _PROJECT_NAME: "user13-ecr"
+
+    
+     
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+      docker: 20
+    commands:
+      - echo install kubectl
+      - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+      - chmod +x ./kubectl
+      - mv ./kubectl /usr/local/bin/kubectl
+  pre_build:
+    commands:
+      - cd gateway
+      - echo Logging in to Amazon ECR...
+      - echo $_PROJECT_NAME
+      - echo $AWS_ACCOUNT_ID
+      - echo $AWS_DEFAULT_REGION
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo start command
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - mvn package -Dmaven.test.skip=true
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION  .
+  post_build:
+    commands:
+      - echo Pushing the Docker image...
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo connect kubectl
+      - kubectl config set-cluster k8s --server="$KUBE_URL" --insecure-skip-tls-verify=true
+      - kubectl config set-credentials admin --token="$KUBE_TOKEN"
+      - kubectl config set-context default --cluster=k8s --user=admin
+      - kubectl config use-context default
+      - |
+          cat <<EOF | kubectl apply -f -
+          apiVersion: v1
+          kind: Service
+          metadata:
+            name: $_PROJECT_NAME
+            labels:
+              app: $_PROJECT_NAME
+          spec:
+            ports:
+              - port: 8080
+                targetPort: 8080
+            selector:
+              app: $_PROJECT_NAME
+          EOF
+      - |
+          cat  <<EOF | kubectl apply -f -
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: $_PROJECT_NAME
+            labels:
+              app: $_PROJECT_NAME
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: $_PROJECT_NAME
+            template:
+              metadata:
+                labels:
+                  app: $_PROJECT_NAME
+              spec:
+                containers:
+                  - name: $_PROJECT_NAME
+                    image: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$_PROJECT_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
+                    ports:
+                      - containerPort: 8080
+                    readinessProbe:
+                      httpGet:
+                        path: /actuator/health
+                        port: 8080
+                      initialDelaySeconds: 10
+                      timeoutSeconds: 2
+                      periodSeconds: 5
+                      failureThreshold: 10
+                    livenessProbe:
+                      httpGet:
+                        path: /actuator/health
+                        port: 8080
+                      initialDelaySeconds: 120
+                      timeoutSeconds: 2
+                      periodSeconds: 5
+                      failureThreshold: 5
+          EOF
+
+cache:
+  paths:
+    - '/root/.m2/**/*'
+```
+
+### 빌드완료 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/011b08ac-77f7-4e97-a983-5101be3ef040)
+
+
+쿠버네티스 배포 완료 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/763aa7ce-d5e1-423d-8eec-12acdb6b015e)
 
 
 
