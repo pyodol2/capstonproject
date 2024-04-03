@@ -405,6 +405,102 @@ siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.ama
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/ecaee246-4e30-47f4-8cd1-276789677f54)
 
 
+새로운 namespace 생성 및 istio-injection 활성화
+```
+kubectl create namespace medical
+kubectl label namespace medical istio-injection=enabled
+```
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/202db5a4-88a5-46e9-bf29-dbdbab588615)
+
+트래픽, 라우팅이나 정책등을 위해 Istio의 Ingress Gateway를 설정하여 배포 한다.
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: istio-medical-gateway
+spec:
+  # The selector matches the ingress gateway pod labels.
+  # If you installed Istio using Helm following the standard documentation, this would be "istio=ingress"
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+  - port:
+      number: 8080
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: medicalinfo
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-medical-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /receptions
+    route:
+    - destination:
+        host: reception
+        port:
+          number: 8080
+```
+
+istio gate way에 연결된 reception 마이크로 서비스(service, deploy)를 배포한다. 
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: reception
+  labels:
+    app: reception
+    service: reception
+spec:
+  ports:
+  - port: 8080
+    name: http
+
+  selector:
+    app: reception
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reception-v1
+  labels:
+    app: reception
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reception
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: reception
+        version: v1
+    spec:
+      containers:
+      - name: reception
+        image: pyodol2/reception:latest
+        ports:
+        - containerPort: 8080
+
+```
+
+
+
+
+애플리케이션들을 Istio Gateway 에 묶기위한 설정들을 배포한다:
+
 ### 통합 모니터링 - Loggregation/Monitoring 
 통합 로깅을 위해 EFK를 설치한다 
 
