@@ -36,42 +36,50 @@
 
 
 1. 접수자가 접수한다.
+   
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/7d054516-2e8e-4685-9c78-b2f21f814d15)
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/0089658a-cad0-4718-b23e-96583866b3b0)
 
-접수된 데이터 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/79b1c971-b933-4881-b3a5-cfb54ffde040)
 
 2. 접수가 완료되면 의사에게 환자 정보가 등록된다
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/a135a719-4dd3-4f40-a613-898eed1712b8)
+   
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/dbb095ce-74f6-483e-9055-d82928329003)
+
 
 
 3. 등록된 정보로 의사가 검사를 처방한다
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/c4ee1add-eb62-49e3-9579-e350f738f8c3)
+   
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/adf21997-edd7-4470-ac29-ee668a6a1b7c)
+
 
 4. 검사 정보가 생성된다
    
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/a0dd9fef-61ac-469e-b16a-00e6891d16dd)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/698412af-3f00-4e81-aff2-329f38d2851c)
+
 
    
 5. 검사자가 검사를 시행 및 취소한다 
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/d4ac20ec-8725-4cb2-95ee-ac9c030b5275)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/b2383a73-8e9a-4d36-8cb2-ad2c82311c21)
 
 
 
 6. 의사가 확인한다.
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/9b2199df-05a4-4e93-9ef6-bdee635b9f51)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/9560dc92-d089-4100-a4af-1d7c7076ce92)
+
 
    
 7. 의사가 진료 종료/ 거부를 한다
+   
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/ab0e297e-416d-4947-b4dd-87d7773ac803)
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/e0766764-cb01-4e5b-897a-2bc625a29952)
+
 
 8. 접수자가 진료 완료,취소를 확인한다
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/2bcf9da3-4c24-4ddd-ac2b-ebec7e8e724a)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/4ab15311-80ca-4e53-a290-09f4bd21c2ca)
+
 
 
 ### SAGA 
@@ -79,7 +87,9 @@ Choreography 방식
 Kafka를 통해 게시-구독 원칙을 적용하여 각 마이크로 서비스는 자체 로컬 트랜잭션을 실행하고 이벤트를 메시지 브로커 시스템 에 게시하고 다른 마이크로 서비스에서 로컬 트랜잭션 을 트리거
 ### Compesnation
 검사거부, 완료   진료 거부 ,완료시 자동으로 Status 변경 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/96606cbc-3b5c-4f31-84ba-922676201b35)
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/8042369b-f43f-4142-b55f-466ae85546b6)
+
 
 
 ###  GateWay 
