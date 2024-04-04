@@ -510,10 +510,13 @@ Siege를 통해 통신을 한 뒤 Kiali를 통해 확인한다
 siege -c20 -t40S -v ae3760a7e45cb4e6792e10e5891d994f-1353774086.eu-central-1.elb.amazonaws.com/receptions
 ```
 
+
+
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/b1444a94-4df6-4397-b2bb-1bd2e2875648)
 
+jaeqer UI로 확인한다 
 
-
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/2aac09dc-9fca-409f-b9bf-f779fe3eaec3)
 
 
 
