@@ -30,7 +30,7 @@ public class Diagnosis {
 
     private String diagnosisStatus;
 
-    @PostPersist
+    @PostUpdate
     public void onPostPersist() {
        
         
