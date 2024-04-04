@@ -290,7 +290,7 @@ buildspec-kubectl.yml 해당 설정을 추가하고 Push 해서 배포한다.
 
 
 ```
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/7295ab2c-af3d-4544-87d5-c0b9f51151fa)
+
 
 
 
@@ -301,7 +301,8 @@ kubectl exec pod/user13-ecr-75d9765455-449q5 -- env
 ```
 Log Level이 INFO로 설정되어있다.
 
-![image](https://github.com/pyodol2/capstonproject/assets/145510412/6e8cf8ce-4bbf-46ce-8646-5408d0d71194)
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/1d819121-f5a9-481e-b80b-69af4429d64b)
+
 
 
 해당 명령어로 실제 로그레벨을 확인한다.
@@ -406,7 +407,7 @@ siege -c1 -t60S -v a1d1ad128e0ac4708a41757c36f1cebb-9683143.eu-central-1.elb.ama
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/ecaee246-4e30-47f4-8cd1-276789677f54)
 
 
-새로운 namespace 생성 및 istio-injection 활성화
+새로운 namespace 생성 및 해당 namespace의 객체들에게 sidecar를 injection을 위해 istio-injection 활성화한다.
 ```
 kubectl create namespace medical
 kubectl label namespace medical istio-injection=enabled
@@ -505,7 +506,7 @@ ae3760a7e45cb4e6792e10e5891d994f-1353774086.eu-central-1.elb.amazonaws.com/recep
 
 
 
-애플리케이션들을 Istio Gateway 에 묶기위한 설정들을 배포한다:
+
 
 ### 통합 모니터링 - Loggregation/Monitoring 
 통합 로깅을 위해 EFK를 설치한다 
