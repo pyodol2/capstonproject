@@ -505,6 +505,15 @@ ae3760a7e45cb4e6792e10e5891d994f-1353774086.eu-central-1.elb.amazonaws.com/recep
 ![image](https://github.com/pyodol2/capstonproject/assets/145510412/49946d3b-b98b-454f-8f46-36d73c86aebe)
 
 
+Siege를 통해 통신을 한 뒤 Kiali를 통해 확인한다 
+```
+siege -c20 -t40S -v ae3760a7e45cb4e6792e10e5891d994f-1353774086.eu-central-1.elb.amazonaws.com/receptions
+```
+
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/b1444a94-4df6-4397-b2bb-1bd2e2875648)
+
+
+
 
 
 
