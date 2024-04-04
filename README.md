@@ -497,6 +497,11 @@ spec:
 
 ```
 
+istio gateway의 external IP 를 확인 한다 .
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/66896dea-ffc1-4136-bc5a-2b6c6dd969df)
+
+ae3760a7e45cb4e6792e10e5891d994f-1353774086.eu-central-1.elb.amazonaws.com/receptions 해당 주소로 동작을 확인한다 
+![image](https://github.com/pyodol2/capstonproject/assets/145510412/49946d3b-b98b-454f-8f46-36d73c86aebe)
 
 
 
